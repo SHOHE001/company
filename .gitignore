@@ -1,0 +1,3 @@
+.company/secret/
+*.log
+__pycache__/

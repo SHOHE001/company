@@ -1,30 +1,41 @@
-﻿# Gemini Company Orchestrator v3.0
+# Gemini Company Orchestrator v3.0
 param (
-    [string]InboxPath = ".company/secretary/inbox",
-    [string]StateDir = ".company/state"
+    [string]$InboxPath = ".company/secretary/inbox",
+    [string]$StateDir = ".company/state"
 )
 
-context = Get-Content -Path "$StateDir/context.json" | ConvertFrom-Json
-session = Get-Content -Path "$StateDir/session.json" | ConvertFrom-Json
-inboxFiles = Get-ChildItem -Path InboxPath
+# Load State
+$context = Get-Content -Path "$StateDir/context.json" -Raw -Encoding UTF8 | ConvertFrom-Json
+$session = Get-Content -Path "$StateDir/session.json" -Raw -Encoding UTF8 | ConvertFrom-Json
+$inboxFiles = Get-ChildItem -Path $InboxPath -File
 
-if (inboxFiles.Count -eq 0) {
+if ($null -eq $inboxFiles -or $inboxFiles.Count -eq 0) {
     Write-Host "No pending tasks in inbox." -ForegroundColor Gray
     return
 }
 
-	argetTask = inboxFiles[0]
-	askContent = Get-Content -Path 	argetTask.FullName -Raw
+# Select Task
+$targetTask = $inboxFiles[0]
+$taskContent = [string](Get-Content -Path $targetTask.FullName -Raw)
 
-# Generate Dispatch Order (Mocked logic for LLM to fill)
-dispatchOrder = @{
-    task_id = 	argetTask.Name
-    objective = 	askContent
-    hop_count = (session.hop_count + 1)
-    history = (session.history + @(session.current_dept))
+# Generate Dispatch Order
+$dispatchOrder = @{
+    task_id = [string]$targetTask.Name
+    objective = $taskContent
+    hop_count = [int]($session.hop_count + 1)
+    history = $session.history + @([string]$session.current_dept)
     max_hops = 5
 }
 
-Write-Host "--- Dispatch Order Generated ---" -ForegroundColor Yellow
-dispatchOrder | ConvertTo-Json
+# Update Session
+$session.hop_count = $dispatchOrder.hop_count
+$session.history = $dispatchOrder.history
+if ($session.pending_tasks -notcontains $dispatchOrder.task_id) {
+    $session.pending_tasks += @($dispatchOrder.task_id)
+}
+$session.next_step = "Processing inbox task: $($targetTask.Name)"
 
+$session | ConvertTo-Json | Set-Content -Path "$StateDir/session.json"
+
+Write-Host "--- Dispatch Order Generated ---" -ForegroundColor Yellow
+$dispatchOrder | ConvertTo-Json

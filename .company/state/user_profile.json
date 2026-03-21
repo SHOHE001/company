@@ -1,0 +1,39 @@
+{
+  "user_identity": {
+    "name": "Owner",
+    "preferences": {
+      "communication_style": "Step-by-step, transparent planning (Claude Code style)",
+      "language": "Japanese",
+      "values": ["Efficiency", "Autonomy", "Proactive improvement", "Visual impact"]
+    }
+  },
+  "mental_model": {
+    "current_focus": [
+      "Building a fully autonomous organization",
+      "Seamless integration with Google ecosystem (Calendar, GAS)",
+      "High-signal, low-noise communication",
+      "Obsidian smartphone integration (iOS/Tailscale context)",
+      "SPI exam preparation",
+      "Spring Camp 2026 (Room assignment & detailed planning)",
+      "Expense reimbursement & management",
+      "Handwritten journal digitization & mental model sync"
+    ],
+    "principles": [
+      "AI should proactively identify gaps and propose enhancements",
+      "Directives should be followed precisely, while Inquiries remain analytical",
+      "System integrity and clean organization are paramount"
+    ]
+  },
+  "learned_traits": [
+    {
+      "date": "2026-03-21",
+      "trait": "Prefer simple data accumulation (e.g., Research reports) over forced autonomous task generation unless explicitly asked.",
+      "context": "AI news harvesting request"
+    },
+    {
+      "date": "2026-03-21",
+      "trait": "Values 'Infinity' in data scope (e.g., Full calendar sync vs. 7-day limit).",
+      "context": "Calendar integration range request"
+    }
+  ]
+}
