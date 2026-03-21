@@ -1,39 +1,42 @@
-# Gemini Company - Autonomous Agent Organization (v2.1)
+# Gemini Company - Autonomous Agent Organization (v3.0)
 
-Gemini CLI 上で、秘書室（Secretary）を窓口とした組織的なエージェント運用を可能にする、**完全自律型の組織フレームワーク**です。
+Gemini CLI 上で、秘書室（Secretary）を窓口とした組織的なエージェント運用を可能にする、**究極の自律型組織エンジン**です。
 
-## 🚀 コンセプト
-単一のエージェントではなく、専門性を持った複数の「部署（Department）」が連携し、共有の「状態（State）」を維持しながら目標を達成します。
+## 🚀 コンセプト: Autonomous Orchestration
+単一のエージェントではなく、専門性を持った複数の「部署（Department）」が、**Orchestrator（司令塔）**によって制御され、共有の**Knowledge Base（組織記憶）**を蓄積しながら目標を達成します。
 
 ## 🏢 組織構造
 各部署は独立したディレクトリを持ち、専用の `GEMINI.md`（役割定義書）に従って動作します。
 
-- **秘書室 (Secretary)**: メイン・コントローラー。`inbox` の監視とタスクのルーティングを担当。
-- **開発部 (Engineering)**: システム設計、実装、バグ修正を担当。実務的なトーンで迅速に納品。
-- **PM部 (Project Management)**: 全体のロードマップ管理、タスクの優先順位付け、スコープの定義を担当。
+- **秘書室 (Secretary) [v3.0]**: メイン・コントローラー。`orchestrate.ps1` を駆使し、戦略立案と自己反省（Reflection）を担当。
+- **開発部 (Engineering)**: システム設計、実装、バグ修正を担当。
+- **PM部 (Project Management)**: 全体のロードマップ管理、タスクの優先順位付け、滞留タスクの再定義を担当。
 - **リサーチ部 (Research)**: 技術選定、実現可能性の調査、プロトタイプ検証を担当。
 - **マーケティング部 (Marketing)**: ユーザー体験(UX)の評価、ドキュメントの平易化、新機能の提案を担当。
 
-## ⚙️ 自律システム (Autonomous Engine)
-システムは以下のスクリプトとデータ構造によって維持されます。
+## ⚙️ 自律エンジン v3.0 (The Autonomous Brain)
+システムは以下のスクリプトとデータ構造によって「思考」し、「記憶」します。
 
-### 1. Dispatcher (`.company/bin/dispatch.ps1`)
-組織の神経系です。部署間の移動時に、現在の文脈（Context）と作業進捗（Session）を同期し、スムーズな引き継ぎを実現します。
+### 1. Orchestrator (`.company/bin/orchestrate.ps1`) [New]
+組織の「脳」です。`inbox` の依頼を読み、現在の組織状態と照らし合わせ、以下の情報を生成します。
+- **Hop Count**: 部署間の移動回数を追跡し、無限ループを防止（最大5回）。
+- **Dispatch Order**: 担当部署、具体的な目標、必要な文脈を定義した実行指示書。
 
-### 2. State Management (`.company/state/`)
-エージェント間の「共通言語」と「記憶」を管理します。
-- `context.json`: 組織のミッション、アクティブな部署、長期的な目標を記録。
-- `session.json`: 現在進行中のタスク、部署間移動時の短期的な文脈を記録。
+### 2. Dispatcher (`.company/bin/dispatch.ps1`) [v3.0]
+組織の「神経系」です。
+- **State Sync**: `context.json` と `session.json` を一括更新。
+- **Archive**: 完了したセッションを履歴として保存し、組織の記憶をクリーンに維持。
 
-### 3. Self-Expansion (`.company/bin/expand.ps1`)
-業務の拡大に応じて、新しい部署とその専門プロンプトを自律的に生成・配備する機能です。
+### 3. State Management (`.company/state/`)
+- **context.json**: **Knowledge Base** セクションを新設。組織全体で共有すべき「重要な事実」を永続化。
+- **session.json**: 現在進行中のタスク、訪問済み部署の履歴（History）、移動回数（Hop Count）を記録。
 
-## 🛠 ワークフロー
+## 🛠 ワークフロー v3.0
 1.  **指示**: ユーザーが `.company/secretary/inbox/` に依頼を投入。
-2.  **解析**: 秘書室が依頼を読み、最適な部署を特定。
-3.  **実行**: 該当部署のエージェントが `session.json` を読み、作業を開始。
-4.  **同期**: 作業完了後、`dispatch.ps1` を通じて状態を更新。
-5.  **報告**: 最終成果物を秘書室がオーナーへ報告。
+2.  **戦略立案**: 秘書室が `orchestrate.ps1` を実行し、最適な戦略（Dispatch Order）を策定。
+3.  **連鎖実行**: 担当部署が `session.json` を引き継ぎ、作業を完遂。必要に応じて他部署へバトンタッチ。
+4.  **反省と記録**: 完了後、秘書室が「自己反省」を行い、得られた知見を **Knowledge Base** に蓄積。
+5.  **アーカイブ**: 一連のタスク終了後、セッションをアーカイブし、次のミッションへ備える。
 
 ---
-*Created and maintained by Gemini CLI - The Autonomous Agent Engine.*
+*Created and maintained by Gemini CLI - The Ultimate Autonomous Agent Engine.*
