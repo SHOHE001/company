@@ -1,27 +1,30 @@
-# Gemini Company Dispatcher Helper
+﻿# Gemini Company Dispatcher Helper v2.1
 param (
-    [string]$Action,      # "expand" or "sync"
-    [string]$DeptName,
-    [string]$RolePrompt,
-    [string]$ContextJson
+    [string]Action,      # "expand", "sync", or "inbox"
+    [string]DeptName,
+    [string]RolePrompt,
+    [string]ContextJson,
+    [string]SessionJson
 )
 
-$companyRoot = ".company"
+companyRoot = ".company"
 
-if ($Action -eq "expand") {
-    $targetDir = "$companyRoot/$DeptName"
-    if (-not (Test-Path $targetDir)) {
-        New-Item -ItemType Directory -Path $targetDir | Out-Null
-        Set-Content -Path "$targetDir/GEMINI.md" -Value "# $DeptName`n`n$RolePrompt"
+if (Action -eq "expand") {
+    	argetDir = "$companyRoot/$DeptName"
+    if (-not (Test-Path 	argetDir)) {
+        New-Item -ItemType Directory -Path 	argetDir | Out-Null
+        Set-Content -Path "$targetDir/GEMINI.md" -Value "# $DeptName
+
+$RolePrompt" -Encoding UTF8
         Write-Host "[Autonomous Expansion] New department '$DeptName' created." -ForegroundColor Green
     }
 }
 
-if ($Action -eq "sync") {
-    $stateFile = "$companyRoot/state/context.json"
-    if (-not (Test-Path "$companyRoot/state")) {
-        New-Item -ItemType Directory -Path "$companyRoot/state" | Out-Null
-    }
-    Set-Content -Path $stateFile -Value $ContextJson
-    Write-Host "[State Sync] Context updated." -ForegroundColor Cyan
+if (Action -eq "sync") {
+    stateDir = "$companyRoot/state"
+    if (-not (Test-Path stateDir)) { New-Item -ItemType Directory -Path stateDir | Out-Null }
+    if (ContextJson) { Set-Content -Path "$stateDir/context.json" -Value ContextJson -Encoding UTF8 }
+    if (SessionJson) { Set-Content -Path "$stateDir/session.json" -Value SessionJson -Encoding UTF8 }
+    Write-Host "[State Sync] Context and Session updated." -ForegroundColor Cyan
 }
+
