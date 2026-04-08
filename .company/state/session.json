@@ -1,22 +1,35 @@
 {
     "hop_count": 1,
-    "pending_tasks": [],
-    "completed_tasks": [
-        "Full Organization Setup v3.1",
-        "Google Workspace Integration (Calendar & Drive)",
-        "Mobile & IDE Optimization",
-        "User Profile & Thought Sync Protocol"
-    ],
     "current_dept": "secretary",
-    "next_step": "Waiting for user input via 'g' command or Cursor.",
-    "current_blockers": [],
-    "history": [
-        "secretary"
+    "status": "HEALTH MONITORING: Left pericoronitis with lymphadenopathy. Emergency dental appointment at 17:00 tomorrow.",
+    "active_departments": [
+        "secretary",
+        "engineering",
+        "monobun",
+        "monobun-web",
+        "research",
+        "marketing",
+        "pm",
+        "task"
     ],
+    "env": {
+        "python_path": "C:\\Users\\zereh\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "live_knowledge_page_id": "32e1fd1d245181ca90bcfa93c43ca639",
+        "last_synced": "2026-04-08 00:40:00",
+        "log_level": "INFO",
+        "audit_progress": "Phase 3: Deep Scan complete. Awaiting Owner's decision on removing Amazon/PayPay sync and archiving Obsidian tools."
+    },
+    "summary": {
+        "pending_total": 8,
+        "critical_issues": []
+    },
     "context": {
-        "completed": "The organization is now a fully integrated partner that understands the owner's schedule, habits, and focus areas.",
-        "uncompleted": [],
-        "issue": "None",
-        "next_action": "Monitor 'scans/' folder for the first handwritten journal entry."
-    }
+        "recent_change": "User reported wisdom tooth inflammation and swollen lymph nodes. 4/9 17:00 dental appointment confirmed.",
+        "next_action": "Remind user at 16:00 tomorrow for the appointment and monitor for emergency signs."
+    },
+    "history": [
+        "secretary",
+        "secretary",
+        "secretary"
+    ]
 }
