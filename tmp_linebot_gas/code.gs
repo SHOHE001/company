@@ -165,7 +165,7 @@ function handleTextCommand(text, replyToken, sourceId, source, userName) {
 
 function timestamp() { return Utilities.formatDate(new Date(), 'Asia/Tokyo', 'yyyy/MM/dd HH:mm:ss'); }
 function getSafeSheetName(name) { return (name || 'Unknown').replace(/[\\\/\[\]\?\*\:]/g, '').trim().substring(0, 31) || 'Unknown'; }
-function getFileExt(name) { return name.substring(name.lastIndexOf('.')); }
+function getFileExt(name) { var i = name.lastIndexOf('.'); return i > -1 ? name.substring(i) : ''; }
 
 function getSortedFiles(folder) {
   var files = [];
